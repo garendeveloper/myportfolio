@@ -5,8 +5,28 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+
 (function() {
   "use strict";
+
+  window.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+  }, false);
+
+  // Disable F12 key
+  window.addEventListener('keydown', function (e) {
+      if (e.keyCode === 123) {
+          e.preventDefault();
+      }
+  }, false);
+
+  // Disable Ctrl+Shift+I and Ctrl+Shift+J
+  window.addEventListener('keydown', function (e) {
+      if ((e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74))) {
+          e.preventDefault();
+      }
+  }, false);
+
 
   var string = "Hello I'm Reygaren Balingit";
   var str = string.split("");
