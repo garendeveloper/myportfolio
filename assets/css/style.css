@@ -14,6 +14,20 @@ body {
   color: #272829;
 }
 
+@keyframes popUp {
+  from {
+    transform: scale(0); /* Start with no size (hidden) */
+  }
+  to {
+    transform: scale(1); /* End with normal size */
+  }
+}
+
+.pop-up {
+  animation-name: popUp; /* Apply the popUp animation */
+  animation-duration: 0.10s; /* Set the duration of the animation */
+}
+
 a {
   color: #149ddd;
   text-decoration: none;
@@ -79,7 +93,7 @@ h6 {
   z-index: 9997;
   transition: all 0.5s;
   padding: 0 15px;
-  background: #040b14;
+  background: #021731;
   overflow-y: auto;
 }
 
@@ -88,7 +102,7 @@ h6 {
   display: block;
   width: 150px;
   height: 150px;
-  border: 8px solid #2c2f3f;
+  border: 8px solid #0b0e1d;
 }
 
 #header .profile h1 {
@@ -110,7 +124,7 @@ h6 {
 #header .profile .social-links a {
   font-size: 18px;
   display: inline-block;
-  background: #212431;
+  background: #0a0b11;
   color: #fff;
   line-height: 1;
   padding: 8px 0;

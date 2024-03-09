@@ -8,6 +8,14 @@
 (function() {
   "use strict";
 
+  var string = "Hello I'm Reygaren Balingit";
+  var str = string.split("");
+  var el = document.getElementById('myname');
+  (function animate() {
+  str.length > 0 ? el.innerHTML += str.shift() : clearTimeout(running); 
+  var running = setTimeout(animate, 90);
+  })();
+
   /**
    * Easy selector helper function
    */
