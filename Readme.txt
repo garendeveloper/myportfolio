@@ -2,7 +2,7 @@ Welcome to My Portfolio
 Hello there! 👋 Welcome to my portfolio, where I showcase my resume and share my personal experiences.
 
 About Me
-I'm passionate about [mention your areas of interest or expertise]. Through my journey, I've gained valuable skills and experiences that I'm excited to share with you.
+I'm passionate about Software Development. Through my journey, I've gained valuable skills and experiences that I'm excited to share with you.
 
 What You'll Find Here
 Resume: Dive into my professional journey, exploring my skills, experiences, and accomplishments.
