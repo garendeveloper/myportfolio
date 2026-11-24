@@ -1,857 +1,382 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Rey — Full-Stack Developer</title>
+  <title>Reygaren Balingit — Full-Stack Engineer</title>
+  <meta name="description" content="Full-stack developer. I build web apps with TypeScript, Next.js, PostgreSQL and AWS. I also know PHP, Laravel and databases well." />
   <link rel="icon" href="assets/img/myprofile.jpg" />
 
-  <!-- Google font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css" />
 
-  <!-- Tailwind Play CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
+  <!-- set theme before paint so there is no flash -->
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: { 
-            brand: '#6366f1',
-            dark: '#1e1b4b'
-          },
-          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
-          animation: {
-            'float': 'float 6s ease-in-out infinite',
-            'fade-in': 'fadeIn 1s ease-in',
-            'slide-up': 'slideUp 0.6s ease-out'
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-20px)' }
-            },
-            slideUp: {
-              '0%': { transform: 'translateY(30px)', opacity: '0' },
-              '100%': { transform: 'translateY(0)', opacity: '1' }
-            }
-          }
-        }
-      }
-    }
+    try {
+      var t = localStorage.getItem('theme');
+      document.documentElement.dataset.theme = t || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    } catch (e) {}
   </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16/dist/typed.umd.js"></script>
-  <style>
-    :root { 
-      --header-h: 76px;
-      --section-py: 80px;
-    }
-    main { padding-top: var(--header-h); }
-    
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #f1f1f1;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #6366f1;
-      border-radius: 4px;
-    }
-    
-    /* Gradient text */
-    .gradient-text {
-      background: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    
-    /* Project card hover effect */
-    .project-card {
-      transition: all 0.3s ease;
-    }
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.1), 0 10px 10px -5px rgba(99, 102, 241, 0.04);
-    }
-    
-    /* Skill badge */
-    .skill-badge {
-      @apply inline-block px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 mr-2 mb-2;
-      transition: all 0.2s ease;
-    }
-    .skill-badge:hover {
-      @apply bg-indigo-200;
-      transform: scale(1.05);
-    }
-    
-    /* Section divider */
-    .wave-divider {
-      height: 60px;
-      overflow: hidden;
-    }
-    .wave-divider svg {
-      height: 100%;
-      width: 100%;
-    }
-    .wave-divider .shape-fill {
-      fill: #FFFFFF;
-    }
-    
-    /* Timeline */
-    .timeline-item {
-      position: relative;
-      padding-left: 30px;
-      margin-bottom: 30px;
-    }
-    .timeline-item:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 5px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #6366f1;
-      border: 3px solid #e0e7ff;
-    }
-    .timeline-item:after {
-      content: '';
-      position: absolute;
-      left: 5px;
-      top: 20px;
-      width: 2px;
-      height: calc(100% - 15px);
-      background: #e0e7ff;
-    }
-    .timeline-item:last-child:after {
-      display: none;
-    }
-  </style>
 </head>
-<body class="bg-gray-50 text-gray-900 antialiased">
+<body>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Header -->
-  <header class="fixed inset-x-0 top-0 h-[76px] bg-white/90 backdrop-blur-sm border-b border-gray-200 z-50 animate-fade-in">
-    <div class="max-w-6xl mx-auto px-5 h-full flex items-center justify-between">
-      <a href="#home" class="flex items-center gap-3 hover:scale-105 transition-transform">
-        <img src="assets/img/myprofile.jpg" alt="Reygaren" class="w-10 h-10 rounded-full object-cover border-2 border-brand hover:rotate-6 transition-transform">
-        <div class="leading-tight">
-          <div class="text-sm font-semibold text-brand">Rey</div>
-          <div class="text-xs text-gray-500">Full-Stack & Database Dev</div>
-        </div>
-      </a>
-      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
-        <a href="#home" class="hover:text-brand transition-colors relative group">
-          Home
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="#about" class="hover:text-brand transition-colors relative group">
-          About
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="#skills" class="hover:text-brand transition-colors relative group">
-          Skills
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="#projects" class="hover:text-brand transition-colors relative group">
-          Projects
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="#experience" class="hover:text-brand transition-colors relative group">
-          Experience
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="#contact" class="hover:text-brand transition-colors relative group">
-          Contact
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brand transition-all duration-300 group-hover:w-full"></span>
-        </a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#home">Reygaren<span>.</span></a>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="#about">About</a>
+        <a href="#stack">Stack</a>
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
       </nav>
-      <button class="md:hidden text-gray-600">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+      <div class="tools">
+        <button class="icon-btn" id="theme-btn" aria-label="Toggle dark mode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button class="icon-btn menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="nav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <!-- Hero -->
-    <section id="home" class="min-h-[90vh] flex items-center bg-gradient-to-br from-indigo-50 to-white">
-      <div class="max-w-6xl mx-auto px-5 py-12 grid md:grid-cols-2 gap-8 items-center">
-        <div class="animate-slide-up">
-          <h2 class="text-4xl md:text-5xl font-extrabold leading-tight">
-            Hey — I'm <span class="gradient-text">Reygaren</span>
-          </h2>
-          <p class="mt-4 text-lg text-gray-700">I build reliable web apps, databases and scalable backend systems.</p>
-          <p class="mt-2 text-indigo-600 font-medium">I am <span id="typed" class="font-semibold"></span></p>
-          <div class="mt-6 flex gap-3">
-            <a href="#projects" class="px-5 py-3 bg-brand text-white rounded-lg shadow-lg hover:bg-indigo-500 transition-all hover:shadow-indigo-300/50 hover:scale-105 flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd" />
-              </svg>
-              See Projects
-            </a>
-            <a href="mailto:garenlopez19jan99@gmail.com" class="px-5 py-3 border border-gray-200 rounded-lg hover:bg-gray-100 transition-all hover:scale-105 flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-              </svg>
-              Contact
-            </a>
+    <section class="hero" id="home">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">Full-stack developer</span>
+          <h1>I build web apps that are <em>simple, fast and reliable</em>.</h1>
+          <p>
+            I have more than 6 years of experience building web apps from start to finish. These days I use
+            TypeScript, Next.js, PostgreSQL and AWS. I started with PHP and Laravel, so I like clean databases and fast queries.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#work">See my projects</a>
+            <a class="btn" href="mailto:garenlopez19jan99@gmail.com">Get in touch</a>
+            <a class="btn" href="https://github.com/garendeveloper" target="_blank" rel="noopener">GitHub</a>
           </div>
-          
-          <div class="mt-8 flex gap-4">
-            <a href="https://github.com/garendeveloper" class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center hover:bg-indigo-50 transition-colors hover:scale-110">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#6366f1"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            </a>
-            <!-- <a href="#" class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center hover:bg-indigo-50 transition-colors hover:scale-110">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#6366f1"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center hover:bg-indigo-50 transition-colors hover:scale-110">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#6366f1"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"/></svg>
-            </a> -->
+          <div class="facts">
+            <div><b>6+ yrs</b><span>building real apps</span></div>
+            <div><b>3 yrs</b><span>fully remote</span></div>
+            <div><b>Nationwide</b><span>POS system used in the PH</span></div>
           </div>
         </div>
-        <div class="flex justify-center md:justify-end animate-float">
-          <div class="relative">
-            <div class="w-64 h-64 md:w-72 md:h-72 rounded-2xl overflow-hidden shadow-xl ring-1 ring-gray-100 bg-white">
-              <img src="assets/img/myprofile.jpg" alt="Reygaren" class="w-full h-full object-cover">
-            </div>
-            <div class="absolute -z-10 -bottom-6 -right-6 w-full h-full rounded-2xl bg-indigo-100"></div>
-            <div class="absolute -z-20 -bottom-12 -right-12 w-full h-full rounded-2xl bg-indigo-200"></div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="absolute bottom-0 left-0 right-0 wave-divider">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-        </svg>
+        <img class="avatar" src="assets/img/myprofile.jpg" alt="Portrait of Reygaren Balingit" width="280" height="280" />
       </div>
     </section>
 
-    <!-- Objective -->
-    <section id="about" class="py-16 bg-white">
-      <div class="max-w-6xl mx-auto px-5">
-        <div class="flex items-center gap-3 mb-8">
-          <div class="w-10 h-0.5 bg-brand"></div>
-          <h3 class="text-2xl font-bold text-brand">About Me</h3>
+    <!-- About -->
+    <section id="about">
+      <div class="wrap reveal">
+        <div class="section-head">
+          <span class="eyebrow">About</span>
+          <h2>A developer who loves databases.</h2>
         </div>
-        
-        <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="about">
           <div>
-            <h4 class="text-xl font-bold text-gray-800 mb-4">Objective</h4>
-            <p class="text-gray-700 leading-relaxed">
-            I am a BS Information Technology graduate majoring in Database Systems with nearly 6 years of experience as a Full Stack Developer. Detail-oriented and driven, I am seeking a challenging role to leverage my expertise in Web and Software Development/Engineering, database optimization, AI-powered automation, web scraping, and scalable systems—with the goal of contributing to a forward-thinking team that values innovation and growth.
-            My strongest specialization is in PHP and Laravel development, supported by deep knowledge in database optimization, server tuning, API performance, and building scalable web applications.
-            One of my most notable achievements was being among the pioneering developers of a POS System in the Philippines, successfully deployed to numerous clients nationwide. Although bound by NDA, I can proudly say I developed the admin backend and POS system entirely from scratch—designing both the backend and frontend without templates, ensuring a fully customized solution.
-            I have worked both as an independent developer and as part of collaborative, dynamic teams, including 3 years as a remote developer. Additionally, I’ve served as a part-time tutor and mentor, helping university students with their capstone system projects.
-            Passionate about continuous growth, I’ve built multiple end-to-end web applications—from data analysis, algorithm design, database architecture, UI/UX, backend, to frontend development. I also have hands-on experience in machine learning and embedded systems, such as developing an intruder detection system using Raspberry Pi and OpenCV, which automatically captures and stores images/videos when detecting motion in restricted areas for a local government project.
-            I am a dedicated, hardworking, and innovative developer who thrives on solving complex challenges and delivering high-quality, impactful solutions.
+            <p>
+              I finished BS Information Technology, majoring in Database Systems. I have worked alone,
+              in teams, and remotely. I like handling a feature from the database all the way to the screen.
             </p>
-            
-            <h4 class="text-xl font-bold text-gray-800 mt-8 mb-4">Education</h4>
-            <p class="text-gray-700"><strong>Bachelor of Science in Information Technology Major in Database Systems</strong><br>
-            Mindanao State University at Naawan | Capstone Programmer<br>
-            <span class="text-sm text-gray-500">(August 2015 – June 2019) Graduated on time</span></p>
+            <p>
+              I was one of the <strong>first developers of a POS system in the Philippines</strong>. Many clients
+              used it. I built the admin backend and the POS myself, without templates.
+              It is under NDA, so I can talk about it but I can't show it.
+            </p>
+            <p>
+              Right now I work on <strong>SocialValet</strong>. It helps people plan, post and track their social media
+              content, with some AI tools. I also help students with their capstone projects. On the side, I made
+              a few camera and Raspberry Pi projects.
+            </p>
           </div>
-          
-          <div class="bg-indigo-50 p-8 rounded-xl">
-            <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_iv4dsx3q.json"  background="transparent"  speed="1"  style="width: 100%; height: auto;"  loop  autoplay></lottie-player>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills" class="py-16 bg-gray-50">
-      <div class="max-w-6xl mx-auto px-5">
-        <div class="flex items-center gap-3 mb-8">
-          <div class="w-10 h-0.5 bg-brand"></div>
-          <h3 class="text-2xl font-bold text-brand">Skills & Expertise</h3>
-        </div>
-        
-        <div class="grid md:grid-cols-2 gap-12">
-          <div class="bg-white p-8 rounded-xl shadow-sm">
-            <h4 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-              </svg>
-              Technical Skills
-            </h4>
-            
-            <div class="space-y-6">
-              <!-- Backend Development -->
-              <div>
-                <h5 class="font-semibold text-gray-800 mb-3">Backend Development</h5>
-                <div class="space-y-3">
-                  <div>
-                    <div class="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>PHP / Laravel</span>
-                      <span>100%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                      <div class="bg-indigo-500 h-2 rounded-full" style="width: 100%"></div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>CodeIgniter</span>
-                      <span>80%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                      <div class="bg-indigo-500 h-2 rounded-full" style="width: 80%"></div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>Python / Flask</span>
-                      <span>75%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                      <div class="bg-indigo-500 h-2 rounded-full" style="width: 75%"></div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>Node.js / Express.js</span>
-                      <span>70%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                      <div class="bg-indigo-500 h-2 rounded-full" style="width: 70%"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Frontend Development -->
-              <div>
-                <h5 class="font-semibold text-gray-800 mb-3">Frontend Development</h5>
-                <div class="space-y-3">
-                  <div>
-                    <div class="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>HTML / CSS</span>
-                      <span>100%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                      <div class="bg-indigo-500 h-2 rounded-full" style="width: 100%"></div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>JavaScript/jQuery</span>
-                      <span>95%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                      <div class="bg-indigo-500 h-2 rounded-full" style="width: 95%"></div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>Vue.js / React.js</span>
-                      <span>80%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                      <div class="bg-indigo-500 h-2 rounded-full" style="width: 80%"></div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>TailwindCSS / Bootstrap</span>
-                      <span>90%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                      <div class="bg-indigo-500 h-2 rounded-full" style="width: 90%"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Other Technologies -->
-              <div>
-                <h5 class="font-semibold text-gray-800 mb-3">Other Technologies</h5>
-                <div class="space-y-3">
-                  <div>
-                    <div class="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>Git / REST API</span>
-                      <span>90%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                      <div class="bg-indigo-500 h-2 rounded-full" style="width: 90%"></div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>Web Scraping / Selenium</span>
-                      <span>75%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                      <div class="bg-indigo-500 h-2 rounded-full" style="width: 75%"></div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>Three.js / WebSocket</span>
-                      <span>70%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                      <div class="bg-indigo-500 h-2 rounded-full" style="width: 70%"></div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>Machine Learning</span>
-                      <span>60%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                      <div class="bg-indigo-500 h-2 rounded-full" style="width: 60%"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          
-          <div class="bg-white p-8 rounded-xl shadow-sm">
-            <h4 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-              </svg>
-              Soft Skills
-            </h4>
-            
-            <ul class="space-y-4">
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-gray-700">Multilingual (English, Tagalog, Bisaya) with excellent communication skills</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-gray-700">Passionate, resourceful, and reliable problem solver</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-gray-700">Fast learner with strong analytical skills</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-gray-700">Highly organized with excellent time management</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-gray-700">Team player with leadership capabilities</span>
-              </li>
+          <aside class="niche">
+            <h3>What I do best</h3>
+            <ul>
+              <li><strong>Connecting apps together</strong>: login with OAuth, webhooks, and posting to WordPress, Instagram, Facebook, Pinterest and TikTok.</li>
+              <li><strong>Background jobs</strong>: queues and schedulers that keep working even when there is a lot to do.</li>
+              <li><strong>AI in real apps</strong>: writing content with Anthropic, OpenAI and Google models.</li>
+              <li><strong>Fast databases</strong>: good table design, indexes and faster queries.</li>
             </ul>
-            
-            <div class="mt-8">
-              <h5 class="font-semibold text-gray-800 mb-4">Languages</h5>
-              <div class="space-y-3">
-                <div>
-                  <div class="flex justify-between text-sm text-gray-600 mb-1">
-                    <span>English</span>
-                    <span>Fluent</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div class="bg-indigo-500 h-2 rounded-full" style="width: 90%"></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between text-sm text-gray-600 mb-1">
-                    <span>Tagalog</span>
-                    <span>Native</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div class="bg-indigo-500 h-2 rounded-full" style="width: 100%"></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between text-sm text-gray-600 mb-1">
-                    <span>Bisaya</span>
-                    <span>Native</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div class="bg-indigo-500 h-2 rounded-full" style="width: 100%"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stack -->
+    <section id="stack">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Stack</span>
+          <h2>Tools I use.</h2>
+          <p class="lead">These are the tools I really use in my work, not just ones I want to learn.</p>
+        </div>
+        <div class="stack">
+          <div class="card reveal">
+            <h3>Frontend</h3>
+            <ul class="chips">
+              <li>TypeScript</li><li>React 19</li><li>Next.js</li><li>React Compiler</li><li>TanStack Query</li>
+              <li>TanStack Form &amp; Table</li><li>Tailwind CSS 4</li><li>shadcn/ui · Radix</li><li>Zustand · Nanostores</li><li>Recharts</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <h3>Backend &amp; APIs</h3>
+            <ul class="chips">
+              <li>Node.js</li><li>Hono</li><li>oRPC (type-safe APIs)</li><li>OpenAPI</li><li>Zod</li>
+              <li>Better Auth</li><li>Stripe</li><li>Webhooks · OAuth</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <h3>Data &amp; queues</h3>
+            <ul class="chips">
+              <li>PostgreSQL</li><li>Drizzle ORM</li><li>MySQL</li><li>Redis</li><li>BullMQ</li>
+              <li>GroupMQ</li><li>AWS SQS</li><li>Schema design</li><li>Query tuning</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <h3>Cloud &amp; delivery</h3>
+            <ul class="chips">
+              <li>AWS</li><li>SST</li><li>Lambda</li><li>S3</li><li>SES</li><li>WAF · CloudWatch</li>
+              <li>Docker</li><li>GitHub Actions</li><li>Turborepo</li><li>pnpm monorepos</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <h3>AI &amp; media</h3>
+            <ul class="chips">
+              <li>Vercel AI SDK</li><li>Anthropic</li><li>OpenAI</li><li>Google GenAI</li><li>Prompt pipelines</li>
+              <li>ffmpeg</li><li>sharp</li><li>React Email · Resend</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <h3>Quality &amp; observability</h3>
+            <ul class="chips">
+              <li>Playwright E2E</li><li>Vitest</li><li>Sentry</li><li>PostHog</li><li>Pino</li>
+              <li>OpenTelemetry</li><li>oxlint · oxfmt</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <h3>Also experienced in</h3>
+            <ul class="chips">
+              <li>PHP · Laravel</li><li>CodeIgniter</li><li>Vue.js</li><li>Python · Flask</li><li>Selenium scraping</li>
+              <li>Three.js</li><li>WebSocket</li><li>OpenCV · YOLOv5</li><li>Raspberry Pi</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section id="projects" class="py-16 bg-white">
-      <div class="max-w-6xl mx-auto px-5">
-        <div class="flex items-center gap-3 mb-8">
-          <div class="w-10 h-0.5 bg-brand"></div>
-          <h3 class="text-2xl font-bold text-brand">Featured Projects</h3>
+    <!-- Work -->
+    <section id="work">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Work</span>
+          <h2>Some of my projects.</h2>
         </div>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="project-card bg-white p-6 rounded-xl border border-gray-100 hover:border-indigo-100">
-            <div class="w-full h-40 bg-indigo-50 rounded-lg mb-4 overflow-hidden flex items-center justify-center">
-              <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_3rwasyjy.json" background="transparent" speed="1" style="width: 120px; height: 120px;" loop autoplay></lottie-player>
+        <div class="projects">
+          <article class="card project featured reveal">
+            <div>
+              <span class="tag">Current · Product</span>
+              <h3>SocialValet</h3>
+              <p class="meta">Social content management platform</p>
+              <p>
+                A tool to plan, write, schedule and post content to social media and WordPress. It also has media tools,
+                AI help and stats. It has a web app, an API and background workers.
+              </p>
+              <ul class="chips">
+                <li>Next.js</li><li>Hono</li><li>oRPC</li><li>PostgreSQL</li><li>Drizzle</li><li>BullMQ</li><li>AWS · SST</li><li>Playwright</li>
+              </ul>
+              <p class="links">
+                <a href="https://socialvalet.ai" target="_blank" rel="noopener">socialvalet.ai</a> ·
+                <a href="https://github.com/rey-socialvalet" target="_blank" rel="noopener">GitHub (work account)</a>
+                <br />The code is private. I can show you how it works in an interview.
+              </p>
             </div>
-            <h4 class="font-semibold text-gray-800">Student & Registrar Management</h4>
-            <p class="text-gray-600 text-sm mt-2">North Central Mindanao College</p>
-            <p class="mt-3 text-gray-700 text-sm">Fully integrated platform for student records, grade encoding, and registrar document processing.</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Laravel</span>
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">MySQL</span>
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">TailwindCSS</span>
-            </div>
-          </div>
+            <ul class="points">
+              <li>A Next.js app that talks to a Hono + oRPC API. Types are shared from the database to the screen.</li>
+              <li>A worker for scheduled posts, with queues and a Bull Board page to watch them.</li>
+              <li>Works with Instagram, Facebook, Pinterest, TikTok and WordPress.</li>
+              <li>One AI package that works with Anthropic, OpenAI and Google models.</li>
+              <li>AWS setup written as code, with separate dev, staging and production.</li>
+            </ul>
+          </article>
 
-          <div class="project-card bg-white p-6 rounded-xl border border-gray-100 hover:border-indigo-100">
-            <div class="w-full h-40 bg-indigo-50 rounded-lg mb-4 overflow-hidden flex items-center justify-center">
-              <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_soCRK3.json" background="transparent" speed="1" style="width: 120px; height: 120px;" loop autoplay></lottie-player>
-            </div>
-            <h4 class="font-semibold text-gray-800">Job Request Scheduling System</h4>
-            <p class="text-gray-600 text-sm mt-2">MSU Naawan</p>
-            <p class="mt-3 text-gray-700 text-sm">Automated job order tracking and scheduling with role-based access and printable reports.</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">CodeIgniter</span>
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">MySQL</span>
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Bootstrap</span>
-            </div>
-          </div>
+          <article class="card project reveal">
+            <span class="tag">Internal tool</span>
+            <h3>SocialValet Admin</h3>
+            <p class="meta">Admin side of the platform</p>
+            <p>An admin panel to manage pricing and AI prompts. It has tables, charts and a page to see what changed in a prompt.</p>
+            <ul class="chips"><li>Next.js</li><li>TanStack Table</li><li>oRPC</li><li>Drizzle</li><li>AWS SQS</li></ul>
+          </article>
 
-          <div class="project-card bg-white p-6 rounded-xl border border-gray-100 hover:border-indigo-100">
-            <div class="w-full h-40 bg-indigo-50 rounded-lg mb-4 overflow-hidden flex items-center justify-center">
-              <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_ysrn2iwp.json" background="transparent" speed="1" style="width: 120px; height: 120px;" loop autoplay></lottie-player>
-            </div>
-            <h4 class="font-semibold text-gray-800">Cemetery Management System</h4>
-            <p class="text-gray-600 text-sm mt-2">Lugait</p>
-            <p class="mt-3 text-gray-700 text-sm">Digitized cemetery plot mapping, burial records, and payment tracking with interactive visualization.</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">PHP</span>
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">MySQL</span>
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Mapbox</span>
-            </div>
-          </div>
+          <article class="card project reveal">
+            <span class="tag">Retail · Under NDA</span>
+            <h3>POS &amp; Inventory System</h3>
+            <p class="meta">TinkerPro Technologies</p>
+            <p>One of the first POS systems of its kind in the Philippines. Many clients used it. I built the admin backend and the POS from scratch.</p>
+            <ul class="chips"><li>Laravel</li><li>Vue.js</li><li>MySQL</li></ul>
+          </article>
 
-          <div class="project-card bg-white p-6 rounded-xl border border-gray-100 hover:border-indigo-100">
-            <div class="w-full h-40 bg-indigo-50 rounded-lg mb-4 overflow-hidden flex items-center justify-center">
-              <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_5tkzkblw.json" background="transparent" speed="1" style="width: 120px; height: 120px;" loop autoplay></lottie-player>
-            </div>
-            <h4 class="font-semibold text-gray-800">Inventory Management System</h4>
-            <p class="text-gray-600 text-sm mt-2">LGU Lugait</p>
-            <p class="mt-3 text-gray-700 text-sm">Barcode scanning and low-stock alerts with real-time updates.</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Laravel</span>
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">AJAX</span>
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">jQuery</span>
-            </div>
-          </div>
+          <article class="card project reveal">
+            <span class="tag">Education</span>
+            <h3>Student &amp; Registrar Management</h3>
+            <p class="meta">North Central Mindanao College</p>
+            <p>Student records, grade encoding and registrar documents, all in one system.</p>
+            <ul class="chips"><li>Laravel</li><li>MySQL</li><li>Tailwind</li></ul>
+          </article>
 
-          <div class="project-card bg-white p-6 rounded-xl border border-gray-100 hover:border-indigo-100">
-            <div class="w-full h-40 bg-indigo-50 rounded-lg mb-4 overflow-hidden flex items-center justify-center">
-              <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_5itouifj.json" background="transparent" speed="1" style="width: 120px; height: 120px;" loop autoplay></lottie-player>
-            </div>
-            <h4 class="font-semibold text-gray-800">Vehicle Tracking System</h4>
-            <p class="text-gray-600 text-sm mt-2">Real-time GPS tracking</p>
-            <p class="mt-3 text-gray-700 text-sm">Live location mapping with WebSocket and location history replay.</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Node.js</span>
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">WebSocket</span>
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Google Maps</span>
-            </div>
-          </div>
+          <article class="card project reveal">
+            <span class="tag">3D · Freelance</span>
+            <h3>Dental STL Viewer</h3>
+            <p class="meta">Remote client</p>
+            <p>A 3D viewer for dental models. It has color notes for treatment planning and runs well even on big models.</p>
+            <ul class="chips"><li>Three.js</li><li>JavaScript</li></ul>
+          </article>
 
-          <div class="project-card bg-white p-6 rounded-xl border border-gray-100 hover:border-indigo-100">
-            <div class="w-full h-40 bg-indigo-50 rounded-lg mb-4 overflow-hidden flex items-center justify-center">
-              <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_gn0to3ej.json" background="transparent" speed="1" style="width: 120px; height: 120px;" loop autoplay></lottie-player>
-            </div>
-            <h4 class="font-semibold text-gray-800">Intruder Detection System</h4>
-            <p class="text-gray-600 text-sm mt-2">ML Security System</p>
-            <p class="mt-3 text-gray-700 text-sm">YOLOv5-based security system with SMS/email alerts on detection events.</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Python</span>
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">YOLOv5</span>
-              <span class="text-xs px-2 py-1 bg-indigo-50 text-indigo-700 rounded">Raspberry Pi</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="mt-12 text-center">
-          <a href="#" class="inline-flex items-center px-5 py-3 border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">
-            View All Projects
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </a>
+          <article class="card project reveal">
+            <span class="tag">Real-time</span>
+            <h3>Vehicle Tracking System</h3>
+            <p class="meta">Live GPS tracking</p>
+            <p>Shows live vehicle location on a map and can replay past routes.</p>
+            <ul class="chips"><li>Node.js</li><li>WebSocket</li><li>Google Maps</li></ul>
+          </article>
+
+          <article class="card project reveal">
+            <span class="tag">Computer vision</span>
+            <h3>Intruder Detection</h3>
+            <p class="meta">Local government project</p>
+            <p>A Raspberry Pi with YOLOv5. It takes photos and videos when it sees movement in restricted areas, then sends SMS and email alerts.</p>
+            <ul class="chips"><li>Python</li><li>OpenCV</li><li>YOLOv5</li><li>Raspberry Pi</li></ul>
+          </article>
+
+          <article class="card project reveal">
+            <span class="tag">Government</span>
+            <h3>Cemetery &amp; Inventory Systems</h3>
+            <p class="meta">LGU Lugait</p>
+            <p>A cemetery map with burial and payment records. Also an inventory system with barcode scanning and low-stock alerts.</p>
+            <ul class="chips"><li>PHP</li><li>Laravel</li><li>MySQL</li><li>Mapbox</li></ul>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- Experience -->
-    <section id="experience" class="py-16 bg-gray-50">
-      <div class="max-w-6xl mx-auto px-5">
-        <div class="flex items-center gap-3 mb-8">
-          <div class="w-10 h-0.5 bg-brand"></div>
-          <h3 class="text-2xl font-bold text-brand">Work Experience</h3>
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Experience</span>
+          <h2>My work history.</h2>
         </div>
-        
-        <div class="grid md:grid-cols-2 gap-8">
-          <div class="bg-white p-8 rounded-xl shadow-sm">
-            <h4 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-500 p-1.5 bg-indigo-50 rounded-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              Professional Experience
-            </h4>
-            
-            <div class="timeline">
-              <div class="timeline-item">
-                <h5 class="font-semibold text-gray-800">Freelance Dental STL Model Programmer</h5>
-                <p class="text-gray-600 text-sm"> (Remote)</p>
-                <ul class="list-disc pl-5 text-gray-700 text-sm mt-2 space-y-1">
-                  <li>Developed custom 3D STL viewer using Three.js for dental models</li>
-                  <li>Optimized 3D rendering performance for large models</li>
-                  <li>Integrated color-coded annotations for treatment planning</li>
-                </ul>
-              </div>
-              
-              <div class="timeline-item">
-                <h5 class="font-semibold text-gray-800">Freelance PHP Programmer / Video Editor</h5>
-                <p class="text-gray-600 text-sm">(Remote)</p>
-                <ul class="list-disc pl-5 text-gray-700 text-sm mt-2 space-y-1">
-                  <li>Maintained e-learning platforms in PHP and MySQL</li>
-                  <li>Created training videos for online learning modules</li>
-                  <li>Optimized website speed and responsiveness</li>
-                </ul>
-              </div>
-              
-              <div class="timeline-item">
-                <h5 class="font-semibold text-gray-800">Software Engineer</h5>
-                <p class="text-gray-600 text-sm">TinkerPro Technologies Inc. – Cebu</p>
-                <ul class="list-disc pl-5 text-gray-700 text-sm mt-2 space-y-1">
-                  <li>Designed POS and inventory management systems</li>
-                  <li>Built applications with Laravel, Vue.js, and MySQL</li>
-                  <li>Collaborated with clients to deliver solutions</li>
-                </ul>
-              </div>
-            </div>
+        <div class="timeline reveal">
+          <div class="job">
+            <h3>Full-Stack Engineer</h3>
+            <p class="where"><a href="https://socialvalet.ai" target="_blank" rel="noopener">SocialValet</a></p>
+            <ul>
+              <li>Build features for the Next.js web app, the Hono/oRPC API and the background workers.</li>
+              <li>Work on social media connections, AI content tools and the admin panel.</li>
+              <li>Write Playwright tests and release through dev, staging and production on AWS.</li>
+            </ul>
           </div>
-          
-          <div class="bg-white p-8 rounded-xl shadow-sm">
-            <h4 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-500 p-1.5 bg-indigo-50 rounded-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-              </svg>
-              Additional Experience
-            </h4>
-            
-            <div class="timeline">
-              <div class="timeline-item">
-                <h5 class="font-semibold text-gray-800">Freelance Python Engineer</h5>
-                <p class="text-gray-600 text-sm">(Remote)</p>
-                <ul class="list-disc pl-5 text-gray-700 text-sm mt-2 space-y-1">
-                  <li>Developed Python scripts for automated web scraping</li>
-                  <li>Implemented data cleaning workflows</li>
-                  <li>Integrated with e-commerce platforms</li>
-                </ul>
-              </div>
-              
-              <div class="timeline-item">
-                <h5 class="font-semibold text-gray-800">Freelance Web Developer</h5>
-                <p class="text-gray-600 text-sm">Capstone Projects (Remote)</p>
-                <ul class="list-disc pl-5 text-gray-700 text-sm mt-2 space-y-1">
-                  <li>Guided academic capstone systems development</li>
-                  <li>Mentored on database design and coding</li>
-                </ul>
-              </div>
-              
-              <div class="timeline-item">
-                <h5 class="font-semibold text-gray-800">IT Designate</h5>
-                <p class="text-gray-600 text-sm">LGU Manticao</p>
-                <ul class="list-disc pl-5 text-gray-700 text-sm mt-2 space-y-1">
-                  <li>Provided IT support and system maintenance</li>
-                  <li>Assisted in digital solutions deployment</li>
-                </ul>
-              </div>
-            </div>
+          <div class="job">
+            <h3>Freelance Dental STL Model Programmer</h3>
+            <p class="where">Remote</p>
+            <ul>
+              <li>Built a Three.js STL viewer for dental models.</li>
+              <li>Made big models load and run faster. Added color notes.</li>
+            </ul>
+          </div>
+          <div class="job">
+            <h3>Freelance PHP Programmer</h3>
+            <p class="where">Remote</p>
+            <ul>
+              <li>Maintained e-learning sites in PHP and MySQL. Made the sites faster.</li>
+              <li>Made training videos for online lessons.</li>
+            </ul>
+          </div>
+          <div class="job">
+            <h3>Software Engineer</h3>
+            <p class="where">TinkerPro Technologies Inc. · Cebu</p>
+            <ul>
+              <li>Designed and built POS and inventory systems with Laravel, Vue.js and MySQL.</li>
+              <li>Worked with clients to build what they needed.</li>
+            </ul>
+          </div>
+          <div class="job">
+            <h3>Freelance Python Engineer</h3>
+            <p class="where">Remote</p>
+            <ul>
+              <li>Made scripts for web scraping and data cleaning. Connected them to e-commerce sites.</li>
+            </ul>
+          </div>
+          <div class="job">
+            <h3>Freelance Web Developer &amp; Capstone Mentor</h3>
+            <p class="where">Remote</p>
+            <ul>
+              <li>Helped university students with their capstone systems, database design and coding.</li>
+            </ul>
+          </div>
+          <div class="job">
+            <h3>IT Designate</h3>
+            <p class="where">LGU Manticao</p>
+            <ul>
+              <li>Gave IT support, maintained systems and helped set up new digital tools.</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Training -->
-    <section class="py-16 bg-white">
-      <div class="max-w-6xl mx-auto px-5">
-        <div class="flex items-center gap-3 mb-8">
-          <div class="w-10 h-0.5 bg-brand"></div>
-          <h3 class="text-2xl font-bold text-brand">Training & Seminars</h3>
+    <!-- Education & training -->
+    <section>
+      <div class="wrap two reveal">
+        <div>
+          <span class="eyebrow">Education</span>
+          <h2>Degree</h2>
+          <ul class="mini">
+            <li>
+              <div>BS Information Technology, Database Systems
+                <small>Mindanao State University at Naawan · Capstone programmer</small></div>
+              <span>2015 – 2019</span>
+            </li>
+          </ul>
         </div>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="bg-gray-50 p-5 rounded-lg border border-gray-200 hover:border-indigo-200 transition-colors">
-            <h4 class="font-semibold text-gray-800">Google IO</h4>
-            <p class="text-gray-600 text-sm mt-1">MSU Iligan Institute of Technology</p>
-            <p class="text-gray-500 text-xs mt-2">June 2017</p>
-          </div>
-          
-          <div class="bg-gray-50 p-5 rounded-lg border border-gray-200 hover:border-indigo-200 transition-colors">
-            <h4 class="font-semibold text-gray-800">PyTsada Road Camp</h4>
-            <p class="text-gray-600 text-sm mt-1">MSU Naawan</p>
-            <p class="text-gray-500 text-xs mt-2">April 2018</p>
-          </div>
-          
-          <div class="bg-gray-50 p-5 rounded-lg border border-gray-200 hover:border-indigo-200 transition-colors">
-            <h4 class="font-semibold text-gray-800">Django Girls CDO</h4>
-            <p class="text-gray-600 text-sm mt-1">DICT Training Hall CDO</p>
-            <p class="text-gray-500 text-xs mt-2">January 2018</p>
-          </div>
-          
-          <div class="bg-gray-50 p-5 rounded-lg border border-gray-200 hover:border-indigo-200 transition-colors">
-            <h4 class="font-semibold text-gray-800">Capstone to Publication</h4>
-            <p class="text-gray-600 text-sm mt-1">MSU Naawan</p>
-            <p class="text-gray-500 text-xs mt-2">2018</p>
-          </div>
-          
-          <div class="bg-gray-50 p-5 rounded-lg border border-gray-200 hover:border-indigo-200 transition-colors">
-            <h4 class="font-semibold text-gray-800">Gamification</h4>
-            <p class="text-gray-600 text-sm mt-1">MSU Naawan</p>
-            <p class="text-gray-500 text-xs mt-2">December 2017</p>
-          </div>
-          
-          <div class="bg-gray-50 p-5 rounded-lg border border-gray-200 hover:border-indigo-200 transition-colors">
-            <h4 class="font-semibold text-gray-800">Digital Image Computing</h4>
-            <p class="text-gray-600 text-sm mt-1">MSU Naawan</p>
-            <p class="text-gray-500 text-xs mt-2">December 2018</p>
-          </div>
+        <div>
+          <span class="eyebrow">Training</span>
+          <h2>Seminars</h2>
+          <ul class="mini">
+            <li><div>Digital Image Computing<small>MSU Naawan</small></div><span>Dec 2018</span></li>
+            <li><div>PyTsada Road Camp<small>MSU Naawan</small></div><span>Apr 2018</span></li>
+            <li><div>Django Girls CDO<small>DICT Training Hall</small></div><span>Jan 2018</span></li>
+            <li><div>Gamification<small>MSU Naawan</small></div><span>Dec 2017</span></li>
+            <li><div>Google IO<small>MSU Iligan Institute of Technology</small></div><span>Jun 2017</span></li>
+          </ul>
         </div>
       </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="py-16 bg-gradient-to-br from-indigo-600 to-indigo-800 text-white text-center">
-      <div class="max-w-2xl mx-auto px-5">
-        <h3 class="text-2xl font-bold mb-4">Let's Work Together</h3>
-        <p class="mb-8">Available for freelance and full-time opportunities — let's build something great.</p>
-        
-        <div class="grid md:grid-cols-2 gap-6 text-left">
-          <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm">
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center flex-shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-medium">Email Me</h4>
-                <a href="mailto:garenlopez19jan99@gmail.com" class="text-indigo-200 hover:text-white transition-colors text-sm">garenlopez19jan99@gmail.com</a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm">
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center flex-shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-medium">Call Me</h4>
-                <a href="tel:+639312158479" class="text-indigo-200 hover:text-white transition-colors text-sm">+63 931 215 8479</a>
-              </div>
-            </div>
+    <section class="contact" id="contact">
+      <div class="wrap reveal">
+        <div class="box">
+          <span class="eyebrow">Contact</span>
+          <h2>Let's work together.</h2>
+          <p>I am open to full-time, remote and freelance work. Email is the fastest way to reach me.</p>
+          <div class="actions">
+            <a class="btn primary" href="mailto:garenlopez19jan99@gmail.com">garenlopez19jan99@gmail.com</a>
+            <a class="btn" href="tel:+639312158479">+63 931 215 8479</a>
+            <a class="btn" href="https://github.com/garendeveloper" target="_blank" rel="noopener">github.com/garendeveloper</a>
+            <a class="btn" href="https://github.com/rey-socialvalet" target="_blank" rel="noopener">github.com/rey-socialvalet</a>
           </div>
         </div>
-        
-        <a href="mailto:garenlopez19jan99@gmail.com" class="mt-8 inline-flex items-center px-6 py-3 bg-white text-indigo-600 rounded-lg shadow-lg hover:bg-gray-100 transition-all hover:scale-105 font-medium">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-          </svg>
-          Send Message
-        </a>
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-gray-200 bg-white">
-    <div class="max-w-6xl mx-auto px-5 py-6">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="flex items-center gap-3 mb-4 md:mb-0">
-          <img src="assets/img/myprofile.jpg" alt="Reygaren" class="w-8 h-8 rounded-full object-cover border-2 border-brand">
-          <div class="text-sm font-medium text-gray-700">Reygaren L. Balingit</div>
-        </div>
-        
-        <!-- <div class="flex gap-4">
-          <a href="#" class="text-gray-500 hover:text-indigo-600 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          </a>
-          <a href="#" class="text-gray-500 hover:text-indigo-600 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-          </a>
-          <a href="#" class="text-gray-500 hover:text-indigo-600 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"/></svg>
-          </a>
-        </div> -->
-      </div>
-      
-      <div class="mt-6 text-center text-sm text-gray-500">
-        © <span id="year"></span> Reygaren L. Balingit · garendeveloper.github.io/myportfolio
-      </div>
-    </div>
-  </footer>
+  <footer>© <span id="year"></span> Reygaren L. Balingit</footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    
-    // Typed.js animation
-    new Typed('#typed', {
-      strings: ['Software Developer', 'Full-Stack Engineer', 'Database Designer', 'PHP Developer', 'Laravel Developer', 'Python Developer', 'Programmer', 'Database Master', 'Problem Solver', 'Debugger', 'Web Scrapper', 'Video Editor', 'Photo Editor'],
-      typeSpeed: 45,
-      backSpeed: 30,
-      backDelay: 2000,
-      loop: true,
-      showCursor: true,
-      cursorChar: '|'
-    });
-    
-    // Scroll reveal animation
-    const animateOnScroll = () => {
-      const elements = document.querySelectorAll('.animate-slide-up, .project-card');
-      
-      elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.2;
-        
-        if(elementPosition < screenPosition) {
-          element.classList.add('animate-slide-up');
-        }
-      });
-    };
-    
-    window.addEventListener('scroll', animateOnScroll);
-    document.addEventListener('DOMContentLoaded', animateOnScroll);
-    
-    // Mobile menu toggle (would need implementation)
-    const mobileMenuButton = document.querySelector('button[aria-label="Mobile menu"]');
-    // Add click handler for mobile menu
-  </script>
+  <script src="assets/js/site.js" defer></script>
 </body>
 </html>
